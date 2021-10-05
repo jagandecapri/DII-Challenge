@@ -202,7 +202,7 @@ def main():
 
     cudnn.benchmark = True
     net = lstm.LSTM(args)
-    if args.gpu:
+    if torch.cuda.is_available():
         net = net.cuda()
         p_dict['loss'] = loss.Loss().cuda()
     else:
