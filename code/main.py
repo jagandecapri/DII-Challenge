@@ -47,6 +47,8 @@ args.use_value = max(args.use_trend, args.use_value)
 args.rnn_size = args.embed_size
 args.hidden_size = args.embed_size
 
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+
 def train_eval(p_dict, phase='train'):
     ### 传入参数
     epoch = p_dict['epoch']
@@ -64,15 +66,14 @@ def train_eval(p_dict, phase='train'):
 
     for i,data in enumerate(tqdm(data_loader)):
         if args.use_visit:
-            if args.gpu:
-                data = [ Variable(x.cuda()) for x in data ]
+            data = [ Variable(x.to(device)) for x in data ]
             visits, values, mask, master, labels, times, trends  = data
             if i == 0:
                 print('input size', visits.size())
             output = model(visits, master, mask, times, phase, values, trends)
         else:
-            inputs = Variable(data[0].cuda())
-            labels = Variable(data[1].cuda())
+            inputs = Variable(data[0].to(device))
+            labels = Variable(data[1].to(device))
             output = model(inputs)
 
         # if 0:
@@ -202,11 +203,8 @@ def main():
 
     cudnn.benchmark = True
     net = lstm.LSTM(args)
-    if torch.cuda.is_available():
-        net = net.cuda()
-        p_dict['loss'] = loss.Loss().cuda()
-    else:
-        p_dict['loss'] = loss.Loss()
+    net = net.to(device)
+    p_dict['loss'] = loss.Loss().to(device)
 
     parameters = []
     for p in net.parameters():
