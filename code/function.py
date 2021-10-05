@@ -237,5 +237,5 @@ def load_all():
         x = torch.load(os.path.join(fo, fi))
         # print(x['epoch'], fi)
         print(x['best_metric'], fi)
-load_all()
+# load_all()
 
