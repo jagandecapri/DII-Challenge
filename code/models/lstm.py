@@ -43,10 +43,10 @@ class LSTM(nn.Module):
             nn.Linear ( opt.embed_size, opt.embed_size ),
         )
         self.tv_mapping = nn.Sequential (
-            nn.Linear ( opt.embed_size , opt.embed_size / 2),
+            nn.Linear ( opt.embed_size , opt.embed_size // 2),
             nn.ReLU ( ),
             nn.Dropout ( 0.25 ),
-            nn.Linear ( opt.embed_size / 2, opt.embed_size ),
+            nn.Linear ( opt.embed_size // 2, opt.embed_size ),
         )
         self.alpha = nn.Linear(args.embed_size, 1)
 
