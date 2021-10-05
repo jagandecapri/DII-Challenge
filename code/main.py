@@ -104,7 +104,7 @@ def train_eval(p_dict, phase='train'):
 
 
     print('\nEpoch: {:d} \t Phase: {:s} \n'.format(epoch, phase))
-    metric = function.print_metric('classification', classification_metric_dict, phase)
+    metric = function.print_metric('classification', classification_metric_dict, phase) #if 'train': f1_score else: auc_roc
     if args.phase != 'train':
         print('metric = ', metric)
         print
@@ -134,10 +134,10 @@ def train_eval(p_dict, phase='train'):
                     fr.write(str(p) + '\n')
 
 
-        print('valid: metric: {:3.4f}\t epoch: {:d}\n'.format(metric, epoch))
-        print('\t\t\t valid: best_metric: {:3.4f}\t epoch: {:d}\n'.format(p_dict['best_metric'][0], p_dict['best_metric'][1]))  
+        print('valid: metric (auc_roc): {:3.4f}\t epoch: {:d}\n'.format(metric, epoch))
+        print('valid: best_metric (auc_roc): {:3.4f}\t epoch: {:d}\n'.format(p_dict['best_metric'][0], p_dict['best_metric'][1]))
     else:
-        print('train: metric: {:3.4f}\t epoch: {:d}\n'.format(metric, epoch))
+        print('train: metric (f1 score): {:3.4f}\t epoch: {:d}\n'.format(metric, epoch))
 
 
 
