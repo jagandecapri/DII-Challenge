@@ -120,17 +120,17 @@ class LSTM(nn.Module):
             output = self.pooling(output)
         else:
             weight = self.alpha(output) # (bs*98, 72, 1)
-            # print weight.size()
+            # print(weight.size())
             weight = weight.view(size[0]*size[1], size[2])
-            # print weight.size()
+            # print(weight.size())
             weight = F.softmax(weight)
             x = weight.data.cpu().numpy()
-            # print x.shape
+            # print(x.shape)
             weight = weight.view(size[0]*size[1], size[2], 1).expand(output.size())
             output = weight * output # (bs*98, 512, 72)
-            # print output.size()
+            # print(output.size())
             output = output.sum(1)
-            # print output.size()
+            # print(output.size())
             # output = torch.transpose(output, 1,2).contiguous() 
         output = output.view(size[0], size[1], size[3])
 
@@ -167,7 +167,7 @@ class LSTM(nn.Module):
         lstm_out, _ = self.lstm( x )
         lstm_out = torch.transpose(lstm_out, 1, 2).contiguous() # (bs, 512, 98)
         mask = self.pooling(mask)
-        # print 'mask', mask.size()
+        # print('mask', mask.size())
         pool_out = []
         mask_out = []
         time_out = []
@@ -188,9 +188,9 @@ class LSTM(nn.Module):
         mask_out = torch.cat(mask_out, 1)  # (bs, 98)
         time_out = np.array(time_out).transpose() # (bs, 98)
 
-        # print 'lstm_out', lstm_out.size()
-        # print 'mask_out', mask_out.size()
-        # print err
+        # print('lstm_out', lstm_out.size())
+        # print('mask_out', mask_out.size())
+        # print(err)
 
         lstm_out = torch.transpose(lstm_out, 1, 2).contiguous() # (bs, 98, 512)
 
@@ -206,7 +206,7 @@ class LSTM(nn.Module):
         size = list(x.size())
         x = x.view(-1)
         x = self.embedding( x )
-        # print x.size()
+        # print(x.size())
         x = self.embed_linear(x)
         size.append(-1)
         x = x.view(size)

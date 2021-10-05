@@ -21,7 +21,7 @@ def gen_feature_order_dict():
     vital_dict = { } # key-valuelist-dict
     for i_line,line in enumerate(open(vital_file)):
         if i_line % 10000 == 0:
-            print i_line
+            print(i_line)
         # if i_line > 10000:
         #     break
         if i_line == 0:
@@ -46,7 +46,7 @@ def gen_feature_order_dict():
         # if i_line > 10000:
         #    break
         # if i_line % 10000 == 0:
-        #     print i_line
+        #     print(i_line)
 
 
     # add group info
@@ -61,7 +61,7 @@ def gen_feature_order_dict():
                 mf = index_feature_list[mg]
                 vital_dict[mf] = vital_dict[mf] + vital_dict[kf]
                 vital_dict.pop(kf)
-    print 'features', len(vital_dict)
+    print('features', len(vital_dict))
 
     # feature_count_dict = { k: len(v) for k,v in vital_dict.items() }
     # py_op.mywritejson(os.path.join(args.file_dir, 'feature_count_dict.json'), feature_count_dict)

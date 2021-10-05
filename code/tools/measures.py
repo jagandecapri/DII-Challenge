@@ -78,13 +78,13 @@ def measures(d_list):
     return m
 
 def print_measures(m, s = 'measures'):
-    print s
+    print(s)
     accuracy = 0
     for cls in sorted(m.keys()):
-        print '\tclass: {:d}\taccuracy:{:.6f}\tprecision:{:.6f}\tratio:{:.6f}\t\tN/T/P:{:d}/{:d}/{:d}\
+        print('\tclass: {:d}\taccuracy:{:.6f}\tprecision:{:.6f}\tratio:{:.6f}\t\tN/T/P:{:d}/{:d}/{:d}\)
             '.format(cls, m[cls]['accuracy'],m[cls]['precision'],m[cls]['ratio'],m[cls]['number'],m[cls]['true'],m[cls]['pred'])
 	accuracy += m[cls]['accuracy'] * m[cls]['ratio']
-    print '\tacc:{:.6f}'.format(accuracy)
+    print('\tacc:{:.6f}'.format(accuracy))
     return accuracy
 
 def mse(pred_image, image):
@@ -131,7 +131,7 @@ def psnr_pred(stain_vis=20, end= 10000):
             continue
         if i>end:
             break
-        print i, min(end, 1000)
+        print(i, min(end, 1000))
 
         f.write(clean_file.split('/')[-1].split('.')[0])
         f.write(',')
@@ -141,13 +141,13 @@ def psnr_pred(stain_vis=20, end= 10000):
         f.write(',')
         f.write(str(psnr_pred/psnr_stain - 1))
         f.write('\n')
-    # print '预测',np.mean(psnr_list)
+    # print('预测',np.mean(psnr_list))
     psnr_list = np.array(psnr_list)
     psnr_mean = ((psnr_list[:,1] - psnr_list[:,0]) / psnr_list[:,0]).mean()
     if end > 1000:
-        print '网纹图PSNR', psnr_list[:,0].mean()
-        print '预测图PSNR', psnr_list[:,1].mean()
-        print '增益率', psnr_mean
+        print('网纹图PSNR', psnr_list[:,0].mean())
+        print('预测图PSNR', psnr_list[:,1].mean())
+        print('增益率', psnr_mean)
     f.write(str(psnr_mean))
     f.close()
     return psnr_list[:,0].mean()
@@ -156,17 +156,17 @@ def main():
     pmax = [0.,0.]
     for vis in range(1, 30):
         p = psnr_pred(vis, 10)
-        print vis, p
+        print(vis, p)
         if p > pmax[1]:
             pmax = [vis, p]
-    print '...'
-    # print 256,psnr_pred(256)
-    print pmax
-    # print 10 * np.log10(255*255/metrics.mean_squared_error([3],[9]))
+    print('...')
+    # print(256,psnr_pred(256))
+    print(pmax)
+    # print(10 * np.log10(255*255/metrics.mean_squared_error([3],[9])))
 
 
 if __name__ == '__main__':
     psnr_pred(4000)
     # main()
     # for v in range(1,10):
-    #     print v, 10 * np.log10(255*255/v/v)
+    #     print(v, 10 * np.log10(255*255/v/v))

@@ -30,9 +30,9 @@ def check_result():
     for task in ['case1', 'task1', 'task2']:
         test = set(test_patient_dict[task])
         pids = get_patient(task)
-        print len(pids), len(test), len(test & pids)
+        print(len(pids), len(test), len(test & pids))
         # if len(test) > len(pids):
-        #     print test - pids
+        #     print(test - pids)
 
 check_result()
 

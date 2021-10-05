@@ -22,7 +22,7 @@ def ana_feat_dist(task):
     [ [ [0. for _ in range(n_split)], [0. for _ in range(n_split)] ] for i in range(143) ]
     for ip, (p, t_dict) in enumerate(patient_time_record_dict.items()):
         if ip % 10000 == 0:
-            print ip, len(patient_time_record_dict)
+            print(ip, len(patient_time_record_dict))
 
         label = patient_label_dict[p]
         for t, vs in t_dict.items():

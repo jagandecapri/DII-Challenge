@@ -21,7 +21,7 @@ def gen_json_data():
     mx_time = - 100
     for i_line, line in enumerate(open(vital_file)):
         if i_line % 10000 == 0:
-            print 'line', i_line
+            print('line', i_line)
         if 'event_time' not in line:
             data = line.strip().split(',')
             patient, time = data[:2]

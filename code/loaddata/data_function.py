@@ -149,7 +149,7 @@ def generate_bbox_label(image, font_place, font_size, font_num, args, image_size
         w = float(w) * image_size[1] / imgw
         fonts.append([x,y,h,w])
 
-    # print bbox_label.shape
+    # print(bbox_label.shape)
     for ix in range(bbox_label.shape[0]):
         for iy in range(bbox_label.shape[1]):
             for ia in range(bbox_label.shape[2]):

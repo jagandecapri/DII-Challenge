@@ -144,12 +144,12 @@ class DataSet(Dataset):
 
         if self.args.task == 'task2':
             num_len = self.length + self.args.last_time
-            # print 'task2', num_len, self.args.last_time
+            # print('task2', num_len, self.args.last_time)
         else:
             num_len = self.length 
-            # print 'task1'
-        # print 'num_len', num_len
-        # print len(visit_list)
+            # print('task1')
+        # print('num_len', num_len)
+        # print(len(visit_list))
         assert len(visit_list) <= num_len
         visit = np.zeros(n_code, dtype=np.int64)
         trend = np.zeros(n_code, dtype=np.int64)

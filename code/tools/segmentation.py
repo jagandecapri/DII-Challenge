@@ -61,7 +61,7 @@ def plot_4(image, gradient,label,segmentation, save_path=None):
 
     fig.tight_layout()
     if save_path:
-        print save_path
+        print(save_path)
         plt.savefig(save_path)
     else:
         plt.show()
@@ -119,7 +119,7 @@ def my_watershed(image, label=None, min_gray=480, max_gray=708, min_gradient=5, 
     return pred
 
 def segmentation(image_npy, label_npy,save_path):
-    print image_npy
+    print(image_npy)
     image = np.load(image_npy)
     label = np.load(label_npy)
     if np.sum(label) == 0:

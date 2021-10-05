@@ -18,12 +18,12 @@ args = parse.args
 def ana_patient():
     fo = '/home/yin/comparison'
     for task in os.listdir(fo):
-        print '\n', fo
+        print('\n', fo)
         task_dir = os.path.join(fo, task)
         task_dir = os.path.join(task_dir, os.listdir(task_dir)[-1])
         for fi in os.listdir(task_dir):
             patients = py_op.myreadjson(os.path.join(task_dir, fi))
-            print fi, len(patients)
+            print(fi, len(patients))
 
         
 def read_result(task='task2'):
@@ -38,7 +38,7 @@ def read_result(task='task2'):
     for line in open(os.path.join(fo, 'result.csv')):
         p = line.split(',')[0]
         pset.add(p)
-    print set(test_dict) - pset
+    print(set(test_dict) - pset)
 
          
 

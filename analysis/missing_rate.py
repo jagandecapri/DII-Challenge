@@ -30,12 +30,12 @@ def analyze_time(task='task1'):
     patient_time_dict = dict()
     for i_line,line in enumerate(open(vital_file)):
         if i_line % 10000 == 0:
-            print i_line
+            print(i_line)
         if i_line:
             patient, time = line.strip().split(',')[:2]
             patient_time_dict[patient] = max(patient_time_dict.get(patient, -10000000), int(float(time)))
     time_list = patient_time_dict.values()
-    print max(time_list), min(time_list)
+    print(max(time_list), min(time_list))
     x = range(max(time_list) + 1)
     y = [0 for _ in x]
     for t in time_list:
@@ -48,7 +48,7 @@ def draw_time_dist():
     time_dist = json.load(open('../file/time_dist.json'))
     x,y = time_dist
     for xi,yi in zip(x, y):
-        print xi, yi
+        print(xi, yi)
     plt.plot(x, y)
     plt.savefig('../result/fig/time.png')
 

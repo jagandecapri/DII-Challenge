@@ -49,13 +49,13 @@ class Loss(nn.Module):
         assert pos_index.size() == font_target.size()
         assert neg_index.size() == font_target.size()
 
-        # print font_output.size(), font_target.size()
+        # print(font_output.size(), font_target.size())
 
 
         # pos
-        # print pos_index.dtype
-        # print pos_index.size()
-        # print pos_index
+        # print(pos_index.dtype)
+        # print(pos_index.size())
+        # print(pos_index)
         pos_target = font_target[pos_index]
         pos_output = font_output[pos_index]
         # pos_output = font_output.cpu()[pos_index.cpu()].cuda()

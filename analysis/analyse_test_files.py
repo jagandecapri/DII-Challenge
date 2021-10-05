@@ -31,10 +31,10 @@ def ana_time(task='task2'):
     mx, mn = -100, 100
     for p,ts in patient_time_dict.items():
         if min(ts) > 5:
-            print p
+            print(p)
         mx = max(mx, min(ts))
         mn = min(mn, max(ts))
-    print mx, mn
+    print(mx, mn)
 
 def ana_patient():
     def get_patients(task):
@@ -47,7 +47,7 @@ def ana_patient():
         pids = set()
         for i,line in enumerate(open(master_file)):
             if i == 0:
-                # print line
+                # print(line)
                 continue
             pid = line.split(',')[0]
             pids.add(pid)
@@ -55,10 +55,10 @@ def ana_patient():
     pids_case1 = get_patients('case1')
     pids_case2 = get_patients('case2')
     pids_task2 = get_patients('task2')
-    print 'case1', len(pids_case1), len(pids_case1 & pids_case2)
-    print 'case2', len(pids_case2)
-    print 'task2', len(pids_task2), len(pids_task2 & pids_case2)
-    print pids_task2 & pids_case2
+    print('case1', len(pids_case1), len(pids_case1 & pids_case2))
+    print('case2', len(pids_case2))
+    print('task2', len(pids_task2), len(pids_task2 & pids_case2))
+    print(pids_task2 & pids_case2)
     test_patient_dict = {
             'case1': sorted(pids_case1),
             'task1': sorted(pids_case2),
@@ -83,13 +83,13 @@ def get_patient_line_dict():
                 patient_data[patient] = patient_data.get(patient, []) + [line]
         for p, d in patient_data.items():
             if len(d) < 4:
-                print task, p, len(d)
+                print(task, p, len(d))
         return patient_data
     task_patient_data = dict()
     for k in ['case1', 'case2', 'task2']:
-        print k
+        print(k)
         task_patient_data[k] = get_data(k)
-    print 'write'
+    print('write')
     with open('../result/task_patient_data.json', 'w') as f:
         f.write(json.dumps(task_patient_data))
 
@@ -136,15 +136,15 @@ def ana_data_similar():
                     for cline in ppc_data:
                         for tline in ppt_data:
                             if cline == tline:
-                                # print ppc, ppt
+                                # print(ppc, ppt)
                                 # cset.add(ppc)
-                                # print cline
-                                # print tline
+                                # print(cline)
+                                # print(tline)
                                 same += 1
                     if same > 5:
-                        print same, len(ppc_data), len(ppt_data)
+                        print(same, len(ppc_data), len(ppt_data))
                         cset.add(ppc)
-    print len(cset), n
+    print(len(cset), n)
 
 def main():
     # ana_time('case1')

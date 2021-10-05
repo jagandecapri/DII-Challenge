@@ -68,7 +68,7 @@ def train_eval(p_dict, phase='train'):
                 data = [ Variable(x.cuda()) for x in data ]
             visits, values, mask, master, labels, times, trends  = data
             if i == 0:
-                print 'input size', visits.size()
+                print('input size', visits.size())
             output = model(visits, master, mask, times, phase, values, trends)
         else:
             inputs = Variable(data[0].cuda())
@@ -105,7 +105,7 @@ def train_eval(p_dict, phase='train'):
     print('\nEpoch: {:d} \t Phase: {:s} \n'.format(epoch, phase))
     metric = function.print_metric('classification', classification_metric_dict, phase)
     if args.phase != 'train':
-        print 'metric = ', metric
+        print('metric = ', metric)
         print
         print
         return
@@ -145,10 +145,10 @@ def main():
     p_dict['args'] = args
     args.split_nn = args.split_num + args.split_nor * 3
     args.vocab_size = args.split_nn * 145 + 1
-    print 'vocab_size', args.vocab_size
+    print('vocab_size', args.vocab_size)
 
     ### load data
-    print 'read data ...'
+    print('read data ...')
     patient_time_record_dict = py_op.myreadjson(os.path.join(args.result_dir, 'patient_time_record_dict.json'))
     patient_master_dict = py_op.myreadjson(os.path.join(args.result_dir, 'patient_master_dict.json'))
     patient_label_dict = py_op.myreadjson(os.path.join(args.result_dir, 'patient_label_dict.json'))
@@ -167,7 +167,7 @@ def main():
 
 
 
-    print 'data loading ...'
+    print('data loading ...')
     train_dataset  = dataloader.DataSet(
                 patient_train, 
                 patient_time_record_dict,
@@ -216,7 +216,7 @@ def main():
     p_dict['model'] = net
     start_epoch = 0
     # args.epoch = start_epoch
-    # print ('best_f1score' + str(best_f1score))
+    # print(('best_f1score' + str(best_f1score)))
 
     p_dict['epoch'] = 0
     p_dict['best_metric'] = [0, 0]
@@ -224,9 +224,9 @@ def main():
 
     ### resume pretrained model
     if os.path.exists(args.resume):
-        print 'resume from model ' + args.resume
+        print('resume from model ' + args.resume)
         function.load_model(p_dict, args.resume)
-        print 'best_metric', p_dict['best_metric']
+        print('best_metric', p_dict['best_metric'])
         # return
 
 
