@@ -17,7 +17,7 @@ args = parse.args
 
 
 def time_encoding_data(d = 512, time = 200):
-    vec = np.array([np.arange(time) * i for i in range(d/2)], dtype=np.float32).transpose()
+    vec = np.array([np.arange(time) * i for i in range(d//2)], dtype=np.float32).transpose()
     vec = vec / vec.max() / 2
     encoding = np.concatenate((np.sin(vec), np.cos(vec)), 1)
     encoding = torch.from_numpy(encoding)
