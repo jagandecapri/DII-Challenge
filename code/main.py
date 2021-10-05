@@ -157,8 +157,8 @@ def main():
     patient_valid = list(json.load(open(os.path.join(args.file_dir, args.task, 'val.json')))) 
 
     if len(patient_train) > len(patient_label_dict):
-        patients = patient_time_record_dict.keys()
-        patients = patient_label_dict.keys()
+        patients = list(patient_time_record_dict.keys())
+        patients = list(patient_label_dict.keys())
         n = int(0.8 * len(patients))
         patient_train = patients[:n]
         patient_valid = patients[n:]
