@@ -21,6 +21,14 @@
             "console": "integratedTerminal",
             "args": ["--vital-file", "../file/vital.csv"],
             "cwd": "${workspaceFolder}/preprocessing"
+        },
+        {
+            "name": "main",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/code"
         }
     ]
 }
